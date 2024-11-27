@@ -3,6 +3,7 @@ import os
 from fastapi import APIRouter, HTTPException, status
 from schemas import CedulaSchema, CedulaImageRequest
 from services import open_ai
+from pydantic import ValidationError
 from typing import Dict
 import base64
 
@@ -16,6 +17,7 @@ async def procesar_cedula(images: CedulaImageRequest):
         Procesa las imágenes de la cédula enviadas en base64,
         las envía al servicio de OpenAI, y devuelve el JSON resultante.
     """
+    print(images)
 
     # Validar los campos existen
     if not images.anverso or not images.reverso:
